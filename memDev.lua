@@ -641,18 +641,17 @@ end
 end
 send(msg.chat_id_, msg.id_,pre_msg)  
 end
-function SourceCh(msg) 
-local url,res = https.request('https://apii.aba.vg/SourceCh.php?id='..msg.sender_user_id_)
+function Ch_Member(msg) 
+local url,res = https.request('https://apii.aba.vg/ChatMember.php?id='..msg.sender_user_id_)
 data = JSON.decode(url)
-if data.ChatMember.ALOMDA ~= true then
+if data.Ch_Member.info ~= true then
 Var = false
-send(msg.chat_id_,msg.id_,'['..data.ChatMember.ALOMDA..']')   
+send(msg.chat_id_,msg.id_,'['..data.Ch_Member.info..']')   
 else
 Var = true
 end
 return Var
-end
-function memDev_Started_Bot(msg,data) -- بداية العمل
+endDev_Started_Bot(msg,data) -- بداية العمل
 if msg then
 local msg = data.message_
 local text = msg.content_.text_
@@ -8444,13 +8443,7 @@ dofile("memDev.lua")
 send(msg.chat_id_, msg.id_, "⧉️↫تم التحديث")
 end
 
-if text == 'السورس' or text == 'سورس' or text == 'ياسورس' or text == 'يا سورس' then  
-local url,res = https.request('https://apii.aba.vg/ChatMember.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.Ch_Member.info ~= true then
-send(msg.chat_id_,msg.id_,'⌔︙شترك في قناة السورس اولآ @src_web .')   
-return false 
-end
+if text == 'السورس' or text == 'سورس' or text == 'ياسورس' or text == 'يا سورس' and Ch_Member(msg) then
 Text = [[
 *- AlomdA Team .*
  — — — — — — — — — 
