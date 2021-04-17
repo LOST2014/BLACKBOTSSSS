@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-cd $HOME/BLACKBOTSS
+cd $HOME/memDev
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x BLACKBOTSS
+chmod +x memDev
 chmod +x ts
 ./ts
 }
 get() {
-rm -fr BLACKBOTSS.lua
+rm -fr memDev.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/LOST2014/BLACKBOTSS/master/BLACKBOTSS.lua"
+wget "https://raw.githubusercontent.com/LOST2014/memDev/master/memDev.lua"
 lua start.lua
 }
 installall(){
@@ -25,6 +25,22 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 sudo apt-get update
 sudo apt-get install
 sudo apt-get install upstart-sysv
+if [ "$Version" == "18" ]; then
+echo -e "\033[0;31m\n~ Installing Depedencies For Ubuntu 18... \n\033[0m"
+cd /lib/x86_64-linux-gnu/ && sudo ln -s libreadline.so.7.0 libreadline.so.6
+wget "apiabs.ml/installubuntu18/compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb" && sudo dpkg -i compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
+rm compat-libevent2-5_2.0.21-1ubuntu18_amd64.deb
+fi
+sudo apt-get install screen -y
+sudo apt-get install libconfig++9v5 -y 
+sudo apt-get install libstdc++6 -y
+sudo apt-get install lua-lgi -y
+sudo apt-get install libnotify-dev -y
+sudo apt-get install lua-space -y
+sudo service redis-server start
+sudo apt-get update -y
+sudo apt-get install g++-4.7 -y c++-4.7
+sudo apt-get install luarocks -y
 wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz;tar zxpf luarocks-2.2.2.tar.gz;cd luarocks-2.2.2 && ./configure
 sudo make bootstrap
 sudo luarocks install luasocket
@@ -47,8 +63,7 @@ fi
 installall
 cd ..
 rm -rf luarocks*
-cd BLACKBOTSS
+cd memDev
 rm -rf luarocks*
 lua start.lua
-
 
