@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-cd $HOME/BLACKBOTSS
+cd $HOME/memDev
 rm -rf $HOME/.telegram-cli
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x BLACKBOTSS
+chmod +x memDev
 chmod +x ts
 ./ts
 }
