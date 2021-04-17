@@ -641,6 +641,17 @@ end
 end
 send(msg.chat_id_, msg.id_,pre_msg)  
 end
+function SourceCh(msg) 
+local url,res = https.request('https://apii.aba.vg/SourceCh.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.ChatMember.ALOMDA ~= true then
+Var = false
+send(msg.chat_id_,msg.id_,'['..data.ChatMember.ALOMDA..']')   
+else
+Var = true
+end
+return Var
+end
 function memDev_Started_Bot(msg,data) -- بداية العمل
 if msg then
 local msg = data.message_
