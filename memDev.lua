@@ -8445,16 +8445,11 @@ send(msg.chat_id_, msg.id_, "⧉️↫تم التحديث")
 end
 
 if text == 'السورس' or text == 'سورس' or text == 'ياسورس' or text == 'يا سورس' then  
-function SourceCh(msg) 
-local url,res = https.request('https://apii.aba.vg/SourceCh.php?id='..msg.sender_user_id_)
+local url,res = https.request('https://apii.aba.vg/ChatMember.php?id='..msg.sender_user_id_)
 data = JSON.decode(url)
-if data.ChatMember.ALOMDA ~= true then
-Var = false
-send(msg.chat_id_,msg.id_,'['..data.ChatMember.ALOMDA..']')   
-else
-Var = true
-end
-return Var
+if data.Ch_Member.info ~= true then
+send(msg.chat_id_,msg.id_,'⌔︙شترك في قناة السورس اولآ @src_web .')   
+return false 
 end
 Text = [[
 *- AlomdA Team .*
